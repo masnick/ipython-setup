@@ -45,6 +45,9 @@ def p_flag(html): # Function for displaying a flagged paragraph tag
 # The line below will hide code by default when the notebook
 # is exported as HTML.
 #
+# See how this works:
+# http://protips.maxmasnick.com/hide-code-when-sharing-ipython-notebooks
+#
 di.display_html('<script>jQuery(function() {if (jQuery("body.notebook_app").length == 0) { jQuery(".input_area").toggle(); jQuery(".prompt").toggle();}});</script>', raw=True)
 
 # The line below will add a button to toggle visibility of code blocks,
