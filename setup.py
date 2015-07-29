@@ -1,51 +1,63 @@
-#    _____ ______ _______ _    _ _____
-#   / ____|  ____|__   __| |  | |  __ \
-#  | (___ | |__     | |  | |  | | |__) |
-#   \___ \|  __|    | |  | |  | |  ___/
-#   ____) | |____   | |  | |__| | |
-#  |_____/|______|  |_|   \____/|_|
+################################ > S E T U P < #################################
 
-
-import pprint # Pretty printing for debugging
-pp = pprint.PrettyPrinter(indent=4) # Usage: `pp.pprint(varname)`
-
-from IPython.display import display
-from IPython.display import HTML
-import IPython.core.display as di # Example: di.display_html('<h3>%s:</h3>' % str, raw=True)
-
-# Function for easily outputting HTML
-def d(html):
-    di.display_html(html, raw=True)
-
-# Function for displaying a flagged paragraph tag
-def p_flag(html):
-    d("""<p style="background-color: yellow;">%s</p>""" % html)
-
-# This line will hide code by default when the notebook is exported as HTML
-di.display_html('<script>jQuery(function() {if (jQuery("body.notebook_app").length == 0) { jQuery(".input_area").toggle(); jQuery(".prompt").toggle();}});</script>', raw=True)
-
-# This line will add a button to toggle visibility of code blocks, for use with the HTML export version
-di.display_html('''<button onclick="jQuery('.input_area').toggle(); jQuery('.prompt').toggle();">Toggle code</button>''', raw=True)
-
-#######################################################################################
-
-# Can only be run once, at beginning
-import matplotlib
-matplotlib.use('TkAgg') # select a backend for plots: http://matplotlib.org/faq/usage_faq.html#what-is-a-backend
-%matplotlib inline
-
-import re # regex
-
+# 1. SciPy setup
+#
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import epipy as epi
+import matplotlib.pyplot as plt # http://matplotlib.org/faq/usage_faq.html
+import matplotlib.gridspec as gs # http://bit.ly/1U6YKGm
 
-plt.ion() # turn on interactive mode: http://matplotlib.org/faq/usage_faq.html#what-is-interactive-mode
+# Other potentially useful libraries
+# import re # regex
+# import epipy as epi # specific for epidemiology research
 
-#######################################################################################
+%matplotlib inline
+# This displays matplotlib graphics inline
+# See http://stackoverflow.com/a/24884342/173351
 
-# iPython notebook configuration
-# http://stackoverflow.com/questions/11707586/python-pandas-widen-output-display
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
+# iPython notebook configuration to increase output width
+# See http://stackoverflow.com/a/11711637/173351
+
+
+
+# 2. Display raw HTML in IPython notebooks
+#
+#    Ability to write raw HTML that will be displayed
+#    with a cell's output.
+#
+#    Example:
+#      di.display_html('<h3>%s:</h3>' % str, raw=True)
+#
+import IPython.core.display as di
+
+def d(html): # Function for easily outputting HTML
+    di.display_html(html, raw=True)
+
+def p_flag(html): # Function for displaying a flagged paragraph tag
+    d("""<p style="background-color: yellow;">%s</p>""" % html)
+
+
+
+# 3. Button to hide code
+#
+# The line below will hide code by default when the notebook
+# is exported as HTML.
+#
+di.display_html('<script>jQuery(function() {if (jQuery("body.notebook_app").length == 0) { jQuery(".input_area").toggle(); jQuery(".prompt").toggle();}});</script>', raw=True)
+
+# The line below will add a button to toggle visibility of code blocks,
+# for use with the HTML export version.
+#
+di.display_html('''<button onclick="jQuery('.input_area').toggle(); jQuery('.prompt').toggle();">Toggle code</button>''', raw=True)
+
+
+
+# 4. Better output for debugging
+#
+#    Usage: `pp.pprint(varname)`
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+
+################################################################################
