@@ -6,6 +6,10 @@ You can easily do this with `%load` magic. In a code cell, put the following:
 
 ...and then run the cell. The cell will be auto-filled with the contents of `setup.py`. Note that you will need to run the cell again after it is auto-filled.
 
+## Auto-create `.py` and `.html` files when saving
+
+IPyton/Jupyter notebooks [can do this automatically](http://protips.maxmasnick.com/ipython-notebooks-automatically-export-py-and-html), which is very useful for version control. The `.html` output from this is what the [toggle HTML button](https://github.com/masnick/ipython-setup/blob/cf703c6dec0fa6f5e41533a87665d7716e759cdb/setup.py#L43-L56) is for.
+
 ## License (MIT)
 
 Copyright (c) 2015 Max Masnick
