@@ -10,6 +10,8 @@ import matplotlib.gridspec as gs # http://bit.ly/1U6YKGm
 # Other potentially useful libraries
 # import re # regex
 # import epipy as epi # specific for epidemiology research
+# from scipy import stats # statistical testing
+
 
 %matplotlib inline
 # This displays matplotlib graphics inline
@@ -34,7 +36,8 @@ import IPython.core.display as di
 
 def d(html): # Function for easily outputting HTML
     di.display_html(html, raw=True)
-
+def p(html): # Function for easily outputting HTML inside <p> tags
+    di.display_html("<p>%s</p>" % html, raw=True)
 def p_flag(html): # Function for displaying a flagged paragraph tag
     d("""<p style="background-color: yellow;">%s</p>""" % html)
 
