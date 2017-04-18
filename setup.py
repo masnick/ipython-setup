@@ -6,12 +6,20 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt # http://matplotlib.org/faq/usage_faq.html
 import matplotlib.gridspec as gs # http://bit.ly/1U6YKGm
+import seaborn
 
 # Other potentially useful libraries
 # import re # regex
 # import epipy as epi # specific for epidemiology research
 # from scipy import stats # statistical testing
+# import xlrd # Needed for pd.read_excel()
+# import feather # pip install feather-format; see https://github.com/wesm/feather
+import datetime as dt
 
+# Sane font sizes for matplotlib figures
+import matplotlib as mpl
+mpl.rc('axes', labelsize="large", titlesize="x-large")
+# Size options are: [size in points | ‘xx-small’ | ‘x-small’ | ‘small’ | ‘medium’ | ‘large’ | ‘x-large’ | ‘xx-large’ ] - http://matplotlib.org/api/text_api.html#matplotlib.text.Text.set_size
 
 %matplotlib inline
 # This displays matplotlib graphics inline
@@ -65,5 +73,8 @@ di.display_html('''<button onclick="jQuery('.input_area').toggle(); jQuery('.pro
 #    Usage: `pp.pprint(varname)`
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
+
+# 5. Retina image support
+get_ipython().magic(u"config InlineBackend.figure_format = 'retina'")
 
 ################################################################################
