@@ -77,4 +77,23 @@ pp = pprint.PrettyPrinter(indent=4)
 # 5. Retina image support
 get_ipython().magic(u"config InlineBackend.figure_format = 'retina'")
 
+# 6. 2x2 table helper methods
+def _2by2(df, row_name, column_name):
+    df = df.copy()
+    df['one'] = 1
+    x = df.pivot_table(columns=[column_name], values=['one'], index=[row_name], aggfunc=[np.sum], margins=True)
+    x.columns = x.columns.droplevel([0,1]) # Delete superflurious index levels
+    return x.astype(int)
+
+def _2by2_cell_percent(df, row_name, column_name):
+    counts = _2by2(df, row_name, column_name)
+    return (counts / counts.iloc[-1][-1].astype(float) * 100).round(1)
+
+def _2by2_row_percent(df, row_name, column_name):
+    counts = _2by2(df, row_name, column_name)
+    return (counts.divide(list(counts.T.iloc[-1]), axis='rows') * 100).round(1)
+
+def _2by2_column_percent(df, row_name, column_name):
+    counts = _2by2(df, row_name, column_name)
+    return (counts.divide(list(counts.iloc[-1]), axis='columns') * 100).round(1)
 ################################################################################
